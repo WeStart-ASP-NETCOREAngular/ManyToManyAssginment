@@ -1,0 +1,15 @@
+﻿
+// 1- Enrollment (TableName : Enrollments) (الوسيط)
+//	-> StudentID
+	-> ClassId
+	Entity<Enrollment>.HasKey(x=> new {x.StudentId, x.ClassId });
+   2->DbContext (Relationships) 
+   3-> make Description Column in Class Table Optional
+   4-> Seed Class With Data
+		-> Title :ASP.NET cORE WITH ANGULAR
+		-> FrontEnd Skills
+   5-> Add Student View
+		-> List of Classes
+		-> Multiple choice (<select asp-items="Classes">)
+   6-> Index -> Student FullName with Classes
+

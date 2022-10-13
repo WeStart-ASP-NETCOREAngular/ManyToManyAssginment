@@ -23,12 +23,16 @@ namespace StudentEnrollmentsAssignment.Data
                 new Class { Id = 2, Title = "Angular SPA", Description = "50 hours" }
                 );
 
+            modelBuilder.Entity<Enrollment>().HasKey(x => new { x.StudentId, x.ClassId });
+
             base.OnModelCreating(modelBuilder);
         }
 
 
         public DbSet<Student> Students { get; set; }
         public DbSet<Class> Classes { get; set; }
+
+        public DbSet<Enrollment> Enrollments { get; set; }
 
     }
 }

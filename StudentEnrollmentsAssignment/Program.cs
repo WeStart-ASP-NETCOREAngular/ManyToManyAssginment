@@ -1,4 +1,5 @@
 
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using StudentEnrollmentsAssignment.Data;
 
@@ -10,6 +11,15 @@ builder.Services.AddDbContext<StudentEnrollmentDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+
+builder.Services
+    .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/Login";
+        //options.ExpireTimeSpan = TimeSpan.FromMinutes(5);   
+    });
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -24,7 +34,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
